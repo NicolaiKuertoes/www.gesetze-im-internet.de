@@ -6,7 +6,7 @@ if (URL.match(pattern)) {
     const abs_nr = /^(\(\w+\))/
 
     Array.from(absaetze).forEach((absatz) => {
-        let saetze = absatz.innerHTML.split(/(?=\. [A-Z]{1})/g);
+        let saetze = absatz.innerHTML.split(/(?=\.\s+[A-Z]{1})/g);
         if(saetze.length >= 2) {
         let newAbsatz = [];
         for (const [nr, satz] of saetze.entries()) {
@@ -14,12 +14,13 @@ if (URL.match(pattern)) {
             if (abs_nr.test(satz)) {
                 let satz_part = satz.split(abs_nr).filter(elm => elm);
                 newAbsatz.push(satz_part[0] + " <sup style='color: #FF00BF;'>" + (nr+1) + "</sup>" + satz_part[1].replace(/^\.\s+/, '').replace(/$/, '.').replace(/\.+$/, '.').trim());
-            
             } else {
                 newAbsatz.push("<sup style='color: #FF00BF;'>" + (nr+1) + "</sup>" +satz.replace(/^\.\s+/, '').replace(/$/, '.').replace(/\.+$/, '.'));
             }
         }
-        absatz.innerHTML = newAbsatz.join(' ');
+        if (!absatz.innerHTML.match(/<\w+>/g)) {
+            absatz.innerHTML = newAbsatz.join(' ');
+        }
         }
     });
 }
