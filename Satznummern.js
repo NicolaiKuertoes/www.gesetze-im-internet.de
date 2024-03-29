@@ -13,7 +13,7 @@ if (URL.match(pattern)) {
                 let satz_part = satz.split(abs_nr).filter(elm => elm);
                 newAbsatz.push(satz_part[0] + " <sup style='color: red;'>" + (nr+1) + "</sup>" + satz_part[1].replace(/^\.\s+/, '').replace(/$/, '.').replace(/\.+$/, '.').trim());
             } else {
-                newAbsatz.push("<sup style='color: red;'>" + (nr+1) + "</sup>" +satz.replace(/^\.\s+/, '').replace(/$/, '.').replace(/\.+$/, '.'));
+                newAbsatz.push("<sup style='color: #FF00BF;'>" + (nr+1) + "</sup>" +satz.replace(/^\.\s+/, '').replace(/$/, '.').replace(/\.+$/, '.'));
             }
         }
         absatz.innerHTML = newAbsatz.join(' ');
