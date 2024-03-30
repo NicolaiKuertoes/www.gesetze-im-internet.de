@@ -29,7 +29,7 @@ if (URL.match(pattern)) {
     absaetze.forEach((absatz) => {
         if (has_numbers(absatz)) {
             let new_absatz = [];
-            let saetze = absatz.innerHTML.split(/(\<dl.*\<\/dl\>)/g);
+            let saetze = absatz.innerHTML.split(/(\<dl.*\<\/dl\>)/g).filter(elem => elem);
             let nr = 1;
             saetze.forEach((satz) => {
                 if (satz.endsWith('</dl>') ||  satz.match(/^[a-z]/)) {
